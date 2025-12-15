@@ -1,10 +1,10 @@
 import { Text } from "react-native";
 import { Screen } from "../components/Screen";
 
-export function SnippetListScreen() {
+export function SnippetFormScreen() {
   return (
     <Screen>
-      <Text>Lista de Snippets</Text>
+      <Text>Novo Snippet</Text>
     </Screen>
   );
 }
