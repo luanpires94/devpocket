@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { Snippet } from "../types/snippet";
 import { loadSnippets, saveSnippets } from "../storage/snippetStorage";
 import { generateId } from "../utils/generateId";
+import "react-native-get-random-values";
 
 type SnippetState = {
   snippets: Snippet[];
