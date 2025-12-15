@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -31,15 +31,20 @@ export function SnippetListScreen() {
       )}
 
       {snippets.map((snippet) => (
-        <Card key={snippet.id}>
-          <Text>{snippet.title}</Text>
-          <Text>{snippet.language}</Text>
-        </Card>
+        <TouchableOpacity
+          key={snippet.id}
+          onPress={() => navigation.navigate("SnippetForm", { id: snippet.id })}
+        >
+          <Card>
+            <Text>{snippet.title}</Text>
+            <Text>{snippet.language}</Text>
+          </Card>
+        </TouchableOpacity>
       ))}
 
       <Button
         title="Novo Snippet"
-        onPress={() => navigation.navigate("SnippetForm")}
+        onPress={() => navigation.navigate("SnippetForm", {})}
       />
     </Screen>
   );

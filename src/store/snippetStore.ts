@@ -9,8 +9,9 @@ type SnippetState = {
   addSnippet: (data: Omit<Snippet, "id" | "createdAt" | "updatedAt">) => void;
   updateSnippet: (
     id: string,
-    updatedData: Omit<Snippet, "id" | "createdAt" | "updatedAt">
+    data: Omit<Snippet, "id" | "createdAt" | "updatedAt">
   ) => void;
+  deleteSnippet: (id: string) => void;
 };
 
 export const useSnippetStore = create<SnippetState>((set, get) => ({
@@ -22,7 +23,7 @@ export const useSnippetStore = create<SnippetState>((set, get) => ({
   },
 
   addSnippet: (data) => {
-    const newSnippet = {
+    const newSnippet: Snippet = {
       ...data,
       id: generateId(),
       createdAt: Date.now(),
@@ -34,12 +35,22 @@ export const useSnippetStore = create<SnippetState>((set, get) => ({
     saveSnippets(updatedSnippets);
   },
 
-  updateSnippet: (id, updatedData) => {
+  updateSnippet: (id, data) => {
     const updatedSnippets = get().snippets.map((snippet) =>
       snippet.id === id
-        ? { ...snippet, ...updatedData, updatedAt: Date.now() }
+        ? { ...snippet, ...data, updatedAt: Date.now() }
         : snippet
     );
+
+    set({ snippets: updatedSnippets });
+    saveSnippets(updatedSnippets);
+  },
+
+  deleteSnippet: (id) => {
+    const updatedSnippets = get().snippets.filter(
+      (snippet) => snippet.id !== id
+    );
+
     set({ snippets: updatedSnippets });
     saveSnippets(updatedSnippets);
   },
