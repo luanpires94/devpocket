@@ -12,7 +12,7 @@ Construído com React Native + Expo, o projeto foca em boas práticas, tipagem f
 
 ✅ Persistência local com AsyncStorage
 
-🗑️ Excluir snippets (em desenvolvimento)
+✅ Excluir snippets
 
 🔍 Busca e filtros (planejado)
 

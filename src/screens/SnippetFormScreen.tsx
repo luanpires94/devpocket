@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Screen } from "../components/Screen";
@@ -17,7 +17,8 @@ export function SnippetFormScreen() {
 
   const id = (route.params as RouteParams | undefined)?.id;
 
-  const { snippets, addSnippet, updateSnippet } = useSnippetStore();
+  const { snippets, addSnippet, updateSnippet, deleteSnippet } =
+    useSnippetStore();
 
   const editingSnippet = snippets.find((s) => s.id === id);
 
@@ -58,6 +59,13 @@ export function SnippetFormScreen() {
     navigation.goBack();
   }
 
+  function handleDelete() {
+    if (!editingSnippet) return;
+
+    deleteSnippet(editingSnippet.id);
+    navigation.goBack()
+  }
+
   return (
     <Screen>
       <Input placeholder="Título" value={title} onChangeText={setTitle} />
@@ -80,6 +88,12 @@ export function SnippetFormScreen() {
         title={editingSnippet ? "Salvar alterações" : "Criar Snippet"}
         onPress={handleSave}
       />
+
+      {editingSnippet && (
+        <View style={{ marginTop: 10 }}>
+          <Button title="Excluir Snippet" onPress={handleDelete} />
+        </View>
+      )}
     </Screen>
   );
 }
