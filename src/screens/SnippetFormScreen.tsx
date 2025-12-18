@@ -81,14 +81,6 @@ export function SnippetFormScreen() {
           onChangeText={setLanguage}
         />
 
-        <Input
-          placeholder="Código"
-          value={code}
-          onChangeText={setCode}
-          multiline
-          style={styles.codeInput}
-        />
-
         <Button
           title={snippet ? "Salvar alterações" : "Criar snippet"}
           onPress={handleSave}

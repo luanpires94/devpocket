@@ -10,6 +10,7 @@ export const typography = {
   title: {
     fontSize: 16,
     fontWeight: "600" as const,
+    marginBottom: 16,
   },
   subtitle: {
     fontSize: 14,
