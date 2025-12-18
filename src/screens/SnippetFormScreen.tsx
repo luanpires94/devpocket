@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, Text } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -73,21 +79,27 @@ export function SnippetFormScreen() {
           {snippet ? "Editar Snippet" : "Novo Snippet"}
         </Text>
 
-        <Input placeholder="Título" value={title} onChangeText={setTitle} />
+        <View style={{ marginBottom: spacing.md }}>
+          <Input placeholder="Título" value={title} onChangeText={setTitle} />
+        </View>
 
-        <Input
-          placeholder="Linguagem"
-          value={language}
-          onChangeText={setLanguage}
-        />
+        <View style={{ marginBottom: spacing.md }}>
+          <Input
+            placeholder="Linguagem"
+            value={language}
+            onChangeText={setLanguage}
+          />
+        </View>
 
-        <Input
-          placeholder="Código"
-          value={code}
-          onChangeText={setCode}
-          multiline
-          style={styles.codeInput}
-        />
+        <View style={{ marginBottom: spacing.md }}>
+          <Input
+            placeholder="Código"
+            value={code}
+            onChangeText={setCode}
+            multiline
+            style={{ height: 160, textAlignVertical: "top" }}
+          />
+        </View>
 
         <Button
           title={snippet ? "Salvar alterações" : "Criar snippet"}
@@ -101,6 +113,9 @@ export function SnippetFormScreen() {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  field: {
+    marginBottom: spacing.md,
   },
   codeInput: {
     height: 160,
