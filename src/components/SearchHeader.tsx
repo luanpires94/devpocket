@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "stretch",
     gap: spacing.md,
-    marginBottom: spacing.md,
+    marginBottom: spacing.xl,
     height: 48,
   },
   inputWrapper: {

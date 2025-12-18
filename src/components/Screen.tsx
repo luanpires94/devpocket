@@ -1,5 +1,5 @@
+import { View, StyleSheet } from "react-native";
 import { ReactNode } from "react";
-import { ScrollView, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
 import { spacing } from "../theme/tokens";
 
@@ -11,19 +11,16 @@ export function Screen({ children }: Props) {
   const { colors } = useTheme();
 
   return (
-    <ScrollView
-      style={{ backgroundColor: colors.background }}
-      contentContainerStyle={styles.container}
-      keyboardShouldPersistTaps="handled"
-    >
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
       {children}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: spacing.lg,
-    paddingBottom: spacing.xl,
+    flex: 1,
+    padding: spacing.md,
+    position: "relative",
   },
 });
