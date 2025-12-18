@@ -1,6 +1,5 @@
 import { TextInput, StyleSheet, TextInputProps } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
-import { spacing } from "../theme/tokens";
 
 type Props = TextInputProps;
 
@@ -26,10 +25,10 @@ export function Input(props: Props) {
 
 const styles = StyleSheet.create({
   input: {
+    height: 48,
     borderWidth: 1,
-    borderRadius: 8,
-    padding: 14,
-    marginBottom: spacing.md,
+    borderRadius: 10,
+    paddingHorizontal: 12,
     fontSize: 16,
   },
 });

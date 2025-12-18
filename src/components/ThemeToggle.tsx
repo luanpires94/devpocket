@@ -27,7 +27,7 @@ export function ThemeToggle() {
 
 const styles = StyleSheet.create({
   button: {
-    height: 48,
+    height: "100%",
     width: 48,
     borderRadius: 10,
     borderWidth: 1,

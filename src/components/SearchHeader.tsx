@@ -27,9 +27,10 @@ export function SearchHeader({ value, onChangeText }: Props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "stretch",
     gap: spacing.md,
     marginBottom: spacing.md,
+    height: 48,
   },
   inputWrapper: {
     flex: 1,
