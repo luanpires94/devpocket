@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
+import { spacing } from "../theme/tokens";
 
 type Props = {
   children: ReactNode;
@@ -10,15 +11,19 @@ export function Screen({ children }: Props) {
   const { colors } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <ScrollView
+      style={{ backgroundColor: colors.background }}
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="handled"
+    >
       {children}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    padding: spacing.lg,
+    paddingBottom: spacing.xl,
   },
 });

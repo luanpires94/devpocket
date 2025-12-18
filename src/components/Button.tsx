@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
+import { spacing, typography } from "../theme/tokens";
 
 type Props = {
   title: string;
@@ -13,22 +14,18 @@ export function Button({ title, onPress }: Props) {
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors.primary }]}
       onPress={onPress}
-      activeOpacity={0.8}
+      activeOpacity={0.85}
     >
-      <Text style={[styles.text, { color: "#FFF" }]}>{title}</Text>
+      <Text style={[typography.title, { color: "#FFF" }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    padding: 14,
-    borderRadius: 8,
+    paddingVertical: spacing.lg,
+    borderRadius: 12,
     alignItems: "center",
-    marginTop: 12,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: "600",
+    marginTop: spacing.lg,
   },
 });

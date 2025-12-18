@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { View, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
+import { spacing } from "../theme/tokens";
 
 type Props = {
   children: ReactNode;
@@ -26,9 +27,9 @@ export function Card({ children }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 16,
-    borderRadius: 8,
+    padding: spacing.lg,
+    borderRadius: 12,
     borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: spacing.md,
   },
 });
