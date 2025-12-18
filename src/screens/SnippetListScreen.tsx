@@ -9,6 +9,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useSnippetStore } from "../store/snippetStore";
 import { RootStackParamList } from "../navigation";
+import { useTheme } from "../theme/useTheme";
 
 type NavigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -18,6 +19,7 @@ type NavigationProps = NativeStackNavigationProp<
 export function SnippetListScreen() {
   const navigation = useNavigation<NavigationProps>();
   const { snippets, loadSnippets } = useSnippetStore();
+  const { colors } = useTheme();
 
   const [search, setSearch] = useState("");
 
@@ -44,13 +46,15 @@ export function SnippetListScreen() {
 
       {search.length > 0 && filteredSnippets.length === 0 && (
         <Card>
-          <Text>Nenhum resultado encontrado</Text>
+          <Text style={{ color: colors.text }}>
+            Nenhum resultado encontrado
+          </Text>
         </Card>
       )}
 
       {filteredSnippets.length === 0 && search.length === 0 && (
         <Card>
-          <Text>Nenhum snippet ainda</Text>
+          <Text style={{ color: colors.text }}>Nenhum snippet ainda</Text>
         </Card>
       )}
 
@@ -60,8 +64,10 @@ export function SnippetListScreen() {
           onPress={() => navigation.navigate("SnippetForm", { id: snippet.id })}
         >
           <Card>
-            <Text>{snippet.title}</Text>
-            <Text>{snippet.language}</Text>
+            <Text style={{ color: colors.text, fontWeight: "600" }}>
+              {snippet.title}
+            </Text>
+            <Text style={{ color: colors.text }}>{snippet.language}</Text>
           </Card>
         </TouchableOpacity>
       ))}

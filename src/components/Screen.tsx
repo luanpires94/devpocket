@@ -1,22 +1,22 @@
+import { ReactNode } from "react";
 import { View, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "../theme/useTheme";
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export function Screen({ children }: Props) {
+  const { colors } = useTheme();
+
   return (
-    <SafeAreaView style={styles.safe}>
-      <View style={styles.container}>{children}</View>
-    </SafeAreaView>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      {children}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     padding: 16,
