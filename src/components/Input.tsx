@@ -1,22 +1,34 @@
-import { TextInput, TextInputProps } from "react-native";
+import { TextInput, StyleSheet, TextInputProps } from "react-native";
+import { useTheme } from "../theme/ThemeProvider";
 
 type Props = TextInputProps;
 
 export function Input(props: Props) {
+  const { colors } = useTheme();
+
   return (
     <TextInput
       {...props}
+      placeholderTextColor={colors.placeholder}
       style={[
+        styles.input,
         {
-          borderWidth: 1,
-          borderColor: "#ccc",
-          borderRadius: 8,
-          padding: 12,
-          marginBottom: 12,
-          fontSize: 16,
+          backgroundColor: colors.card,
+          borderColor: colors.border,
+          color: colors.text,
         },
-        props.style,
       ]}
+      selectionColor={colors.primary}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  input: {
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 14,
+    marginBottom: 12,
+    fontSize: 16,
+  },
+});

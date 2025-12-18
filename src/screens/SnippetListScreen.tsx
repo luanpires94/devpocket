@@ -9,7 +9,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useSnippetStore } from "../store/snippetStore";
 import { RootStackParamList } from "../navigation";
-import { useTheme } from "../theme/useTheme";
+import { useTheme } from "../theme/ThemeProvider";
 
 type NavigationProps = NativeStackNavigationProp<
   RootStackParamList,

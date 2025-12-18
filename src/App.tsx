@@ -1,5 +1,10 @@
 import { AppNavigation } from "./navigation";
+import { ThemeProvider } from "./theme/ThemeProvider";
 
 export default function App() {
-  return <AppNavigation />;
+  return (
+    <ThemeProvider>
+      <AppNavigation />
+    </ThemeProvider>
+  );
 }
