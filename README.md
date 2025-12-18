@@ -35,17 +35,18 @@ AsyncStorage (persistência local)
 UUID (identificadores únicos)
 
 🗂️ Estrutura do projeto
-src/
-├── components/ # Componentes reutilizáveis
-├── navigation/ # Configuração de rotas
-├── screens/ # Telas da aplicação
-├── store/ # Zustand stores
-├── storage/ # AsyncStorage abstraído
-├── types/ # Tipos e interfaces
-├── utils/ # Funções utilitárias
 
-🚀 Como rodar o projeto
-Pré-requisitos
+src/
+├── components/        # Componentes reutilizáveis
+├── navigation/        # Configuração de rotas
+├── screens/           # Telas da aplicação
+├── store/             # Zustand stores
+├── storage/           # AsyncStorage abstraído
+├── types/             # Tipos e interfaces
+├── utils/             # Funções utilitárias
+
+
+🚀 Como rodar o projeto Pré-requisitos
 
 Node.js (18+)
 
@@ -53,13 +54,9 @@ Expo CLI
 
 Android Studio ou Expo Go
 
-Instalação
-git clone https://github.com/SEU_USUARIO/devpocket.git
-cd devpocket
-npm install
+Instalação git clone https://github.com/SEU_USUARIO/devpocket.git cd devpocket npm install
 
-Executar
-npm start
+Executar npm start
 
 Depois pressione:
 
