@@ -18,6 +18,7 @@ Construído com React Native + Expo, o projeto foca em boas práticas, tipagem f
 
 🌙 Dark mode (planejado)
 
+
 🧱 Stack utilizada
 
 React Native
@@ -33,6 +34,7 @@ React Navigation (Native Stack)
 AsyncStorage (persistência local)
 
 UUID (identificadores únicos)
+
 
 🗂️ Estrutura do projeto
 
@@ -63,6 +65,7 @@ Depois pressione:
 a para abrir no emulador Android
 
 ou escaneie o QR Code com o Expo Go
+
 
 🧠 Aprendizados e decisões técnicas
 
