@@ -36,15 +36,16 @@ UUID (identificadores únicos)
 
 🗂️ Estrutura do projeto
 
-src/
-├── components/        # Componentes reutilizáveis
-├── navigation/        # Configuração de rotas
-├── screens/           # Telas da aplicação
-├── store/             # Zustand stores
-├── storage/           # AsyncStorage abstraído
-├── types/             # Tipos e interfaces
-├── utils/             # Funções utilitárias
-
+```javascript
+    src/
+    ├── components/        # Componentes reutilizáveis
+    ├── navigation/        # Configuração de rotas
+    ├── screens/           # Telas da aplicação
+    ├── store/             # Zustand stores
+    ├── storage/           # AsyncStorage abstraído
+    ├── types/             # Tipos e interfaces
+    ├── utils/             # Funções utilitárias
+```
 
 🚀 Como rodar o projeto Pré-requisitos
 
