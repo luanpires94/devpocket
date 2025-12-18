@@ -28,7 +28,7 @@ export function Card({ children }: Props) {
 const styles = StyleSheet.create({
   card: {
     padding: spacing.lg,
-    borderRadius: 12,
+    borderRadius: spacing.md,
     borderWidth: 1,
     marginBottom: spacing.md,
   },

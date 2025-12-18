@@ -40,7 +40,7 @@ export function SnippetFormScreen() {
   }, [snippet]);
 
   function handleSave() {
-    if (!title || !language || !code) {
+    if (!title || !language) {
       return;
     }
 
@@ -49,7 +49,7 @@ export function SnippetFormScreen() {
         title,
         language,
         code,
-        tags: [],
+        tags: snippet.tags ?? [],
       });
     } else {
       addSnippet({
@@ -79,6 +79,14 @@ export function SnippetFormScreen() {
           placeholder="Linguagem"
           value={language}
           onChangeText={setLanguage}
+        />
+
+        <Input
+          placeholder="Código"
+          value={code}
+          onChangeText={setCode}
+          multiline
+          style={styles.codeInput}
         />
 
         <Button

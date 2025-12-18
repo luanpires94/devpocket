@@ -23,9 +23,9 @@ export function Button({ title, onPress }: Props) {
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: spacing.lg,
-    borderRadius: 12,
+    paddingVertical: spacing.md,
+    borderRadius: 10,
     alignItems: "center",
-    marginTop: spacing.lg,
+    marginTop: spacing.md,
   },
 });

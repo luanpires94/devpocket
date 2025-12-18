@@ -6,8 +6,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Screen } from "../components/Screen";
 import { Card } from "../components/Card";
 import { Button } from "../components/Button";
-import { Input } from "../components/Input";
-import { ThemeToggleButton } from "../components/ThemeToggleButton";
+import { SearchHeader } from "../components/SearchHeader";
 import { useSnippetStore } from "../store/snippetStore";
 import { RootStackParamList } from "../navigation";
 import { useTheme } from "../theme/ThemeProvider";
@@ -39,14 +38,7 @@ export function SnippetListScreen() {
 
   return (
     <Screen>
-      {/* 🌗 Dark mode toggle */}
-      <ThemeToggleButton />
-
-      <Input
-        placeholder="Buscar por título ou linguagem"
-        value={search}
-        onChangeText={setSearch}
-      />
+      <SearchHeader value={search} onChangeText={setSearch} />
 
       {search.length > 0 && filteredSnippets.length === 0 && (
         <Card>

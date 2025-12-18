@@ -1,5 +1,6 @@
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
+import { spacing } from "../theme/tokens";
 
 export function ThemeToggleButton() {
   const { theme, setTheme, colors } = useTheme();
@@ -29,10 +30,10 @@ const styles = StyleSheet.create({
   button: {
     alignSelf: "flex-end",
     paddingVertical: 6,
-    paddingHorizontal: 12,
+    paddingHorizontal: spacing.md,
     borderRadius: 8,
     borderWidth: 1,
-    marginBottom: 12,
+    marginBottom: spacing.md,
   },
   text: {
     fontSize: 14,
