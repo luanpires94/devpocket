@@ -3,6 +3,7 @@ import { Snippet } from "../types/snippet";
 import { loadSnippets, saveSnippets } from "../storage/snippetStorage";
 import { generateId } from "../utils/generateId";
 import "react-native-get-random-values";
+import { LANGUAGES } from "../constants/languages";
 
 type SnippetState = {
   snippets: Snippet[];
@@ -20,7 +21,17 @@ export const useSnippetStore = create<SnippetState>((set, get) => ({
 
   loadSnippets: async () => {
     const storedSnippets = await loadSnippets();
-    set({ snippets: storedSnippets });
+
+    const normalized = storedSnippets.map((snippet) => {
+      const isValid = LANGUAGES.some((l) => l.value === snippet.language);
+
+      return {
+        ...snippet,
+        language: isValid ? snippet.language : "javascript",
+      };
+    });
+
+    set({ snippets: normalized });
   },
 
   addSnippet: (data) => {

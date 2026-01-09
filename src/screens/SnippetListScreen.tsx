@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, ScrollView, StyleSheet, View } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet,
+  View,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -112,11 +118,7 @@ export function SnippetListScreen() {
                     style={styles.deleteButton}
                     activeOpacity={0.7}
                   >
-                    <MaterialIcons
-                      name="delete"
-                      size={24}
-                      color="#DC2626"
-                    />
+                    <MaterialIcons name="delete" size={24} color="#B91C1C" />
                   </TouchableOpacity>
                 </View>
               </Card>

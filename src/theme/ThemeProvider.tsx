@@ -16,6 +16,7 @@ type ThemeContextData = {
   theme: Theme;
   colors: ThemeColors;
   setTheme: (theme: Theme) => void;
+  isDark: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextData>({} as ThemeContextData);
@@ -45,7 +46,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const colors = isDark ? darkColors : lightColors;
 
   return (
-    <ThemeContext.Provider value={{ theme, colors, setTheme }}>
+    <ThemeContext.Provider value={{ theme, colors, setTheme, isDark }}>
       {children}
     </ThemeContext.Provider>
   );

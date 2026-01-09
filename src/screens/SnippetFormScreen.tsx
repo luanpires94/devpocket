@@ -16,6 +16,9 @@ import { useSnippetStore } from "../store/snippetStore";
 import { RootStackParamList } from "../navigation";
 import { useTheme } from "../theme/ThemeProvider";
 import { spacing, typography } from "../theme/tokens";
+import { LanguageSelect } from "../components/LanguageSelect";
+import { CodeEditor } from "../components/CodeEditor";
+import { CodeLanguage } from "../constants/languages";
 
 type RouteProps = RouteProp<RootStackParamList, "SnippetForm">;
 type NavigationProps = NativeStackNavigationProp<
@@ -34,8 +37,8 @@ export function SnippetFormScreen() {
   const snippet = snippets.find((item) => item.id === snippetId);
 
   const [title, setTitle] = useState("");
-  const [language, setLanguage] = useState("");
   const [code, setCode] = useState("");
+  const [language, setLanguage] = useState<CodeLanguage>("javascript");
 
   useEffect(() => {
     if (snippet) {
@@ -84,21 +87,11 @@ export function SnippetFormScreen() {
         </View>
 
         <View style={{ marginBottom: spacing.md }}>
-          <Input
-            placeholder="Linguagem"
-            value={language}
-            onChangeText={setLanguage}
-          />
+          <LanguageSelect value={language} onChange={setLanguage} />
         </View>
 
         <View style={{ marginBottom: spacing.md }}>
-          <Input
-            placeholder="Código"
-            value={code}
-            onChangeText={setCode}
-            multiline
-            style={{ height: 160, textAlignVertical: "top" }}
-          />
+          <CodeEditor value={code} onChangeText={setCode} language={language} />
         </View>
 
         <Button
