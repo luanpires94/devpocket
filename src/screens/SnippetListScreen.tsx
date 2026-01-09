@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, ScrollView, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { Screen } from "../components/Screen";
 import { Card } from "../components/Card";
 import { SearchHeader } from "../components/SearchHeader";
+import { ConfirmModal } from "../components/ConfirmModal";
 import { useSnippetStore } from "../store/snippetStore";
 import { RootStackParamList } from "../navigation";
 import { useTheme } from "../theme/ThemeProvider";
 import { spacing, typography } from "../theme/tokens";
 import { Fab } from "../components/Fab";
+import { Snippet } from "../types/snippet";
 
 type NavigationProps = NativeStackNavigationProp<
   RootStackParamList,
@@ -19,10 +22,11 @@ type NavigationProps = NativeStackNavigationProp<
 
 export function SnippetListScreen() {
   const navigation = useNavigation<NavigationProps>();
-  const { snippets, loadSnippets } = useSnippetStore();
+  const { snippets, loadSnippets, deleteSnippet } = useSnippetStore();
   const { colors } = useTheme();
 
   const [search, setSearch] = useState("");
+  const [snippetToDelete, setSnippetToDelete] = useState<Snippet | null>(null);
 
   useEffect(() => {
     loadSnippets();
@@ -36,6 +40,21 @@ export function SnippetListScreen() {
       snippet.language.toLowerCase().includes(query)
     );
   });
+
+  function handleDeletePress(snippet: Snippet) {
+    setSnippetToDelete(snippet);
+  }
+
+  function handleConfirmDelete() {
+    if (snippetToDelete) {
+      deleteSnippet(snippetToDelete.id);
+      setSnippetToDelete(null);
+    }
+  }
+
+  function handleCancelDelete() {
+    setSnippetToDelete(null);
+  }
 
   return (
     <Screen>
@@ -69,22 +88,53 @@ export function SnippetListScreen() {
               }
             >
               <Card>
-                <Text
-                  style={[
-                    typography.body,
-                    { color: colors.text, fontWeight: "600" },
-                  ]}
-                >
-                  {snippet.title}
-                </Text>
+                <View style={styles.snippetContent}>
+                  <View style={styles.snippetInfo}>
+                    <Text
+                      style={[
+                        typography.body,
+                        { color: colors.text, fontWeight: "600" },
+                      ]}
+                    >
+                      {snippet.title}
+                    </Text>
 
-                <Text style={{ color: colors.text }}>{snippet.language}</Text>
+                    <Text style={{ color: colors.text }}>
+                      {snippet.language}
+                    </Text>
+                  </View>
+
+                  <TouchableOpacity
+                    onPress={(e) => {
+                      e.stopPropagation();
+                      handleDeletePress(snippet);
+                    }}
+                    style={styles.deleteButton}
+                    activeOpacity={0.7}
+                  >
+                    <MaterialIcons
+                      name="delete"
+                      size={24}
+                      color="#DC2626"
+                    />
+                  </TouchableOpacity>
+                </View>
               </Card>
             </TouchableOpacity>
           );
         })}
       </ScrollView>
       <Fab onPress={() => navigation.navigate("SnippetForm", {})} />
+
+      <ConfirmModal
+        visible={snippetToDelete !== null}
+        title="Deletar snippet"
+        message={`Tem certeza que deseja deletar o snippet "${snippetToDelete?.title}"? Esta ação não pode ser desfeita.`}
+        confirmText="Deletar"
+        cancelText="Cancelar"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </Screen>
   );
 }
@@ -92,5 +142,17 @@ export function SnippetListScreen() {
 const styles = StyleSheet.create({
   list: {
     paddingBottom: spacing.lg,
+  },
+  snippetContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  snippetInfo: {
+    flex: 1,
+  },
+  deleteButton: {
+    padding: spacing.sm,
+    marginLeft: spacing.md,
   },
 });
