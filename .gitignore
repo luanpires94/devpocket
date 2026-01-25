@@ -40,3 +40,10 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# roadmap e documentação
+ROADMAP.md
+GUIA_ADMOB.md
+GUIA_CONFIGURACAO.md
+INSTRUCOES_BUILD.md
+RESUMO_IMPLEMENTACAO.md

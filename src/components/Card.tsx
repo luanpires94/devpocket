@@ -1,13 +1,14 @@
 import { ReactNode } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
 import { spacing } from "../theme/tokens";
 
 type Props = {
   children: ReactNode;
+  style?: ViewStyle;
 };
 
-export function Card({ children }: Props) {
+export function Card({ children, style }: Props) {
   const { colors } = useTheme();
 
   return (
@@ -18,6 +19,7 @@ export function Card({ children }: Props) {
           backgroundColor: colors.card,
           borderColor: colors.border,
         },
+        style,
       ]}
     >
       {children}

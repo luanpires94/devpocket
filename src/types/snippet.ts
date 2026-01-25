@@ -6,6 +6,7 @@ export type Snippet = {
   code: string;
   language: CodeLanguage;
   tags: string[];
+  isFavorite?: boolean;
   createdAt: number;
   updatedAt: number;
 };

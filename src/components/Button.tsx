@@ -1,20 +1,27 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet, ViewStyle } from "react-native";
 import { useTheme } from "../theme/ThemeProvider";
 import { spacing, typography } from "../theme/tokens";
 
 type Props = {
   title: string;
   onPress: () => void;
+  style?: ViewStyle;
+  disabled?: boolean;
 };
 
-export function Button({ title, onPress }: Props) {
+export function Button({ title, onPress, style, disabled = false }: Props) {
   const { colors } = useTheme();
 
   return (
     <TouchableOpacity
-      style={[styles.button, { backgroundColor: colors.primary }]}
+      style={[
+        styles.button,
+        { backgroundColor: disabled ? colors.placeholder : colors.primary },
+        style,
+      ]}
       onPress={onPress}
       activeOpacity={0.85}
+      disabled={disabled}
     >
       <Text style={[typography.title, { color: "#FFF" }]}>{title}</Text>
     </TouchableOpacity>

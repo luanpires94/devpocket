@@ -31,7 +31,6 @@ export function CodeEditor({ value, language, onChangeText }: Props) {
   const { colors, isDark } = useTheme();
   const [copied, setCopied] = useState(false);
 
-  // Função para copiar o código
   async function handleCopy() {
     if (!value) return;
     await Clipboard.setStringAsync(value);
@@ -46,7 +45,6 @@ export function CodeEditor({ value, language, onChangeText }: Props) {
         { backgroundColor: colors.card, borderColor: colors.border },
       ]}
     >
-      {/* Header */}
       <View style={styles.header}>
         <Text style={[styles.label, { color: colors.text }]}>
           Código ({language})
@@ -61,28 +59,38 @@ export function CodeEditor({ value, language, onChangeText }: Props) {
         </TouchableOpacity>
       </View>
 
-      {/* Editor */}
       <View style={styles.editorContainer}>
-        {/* Syntax Highlight */}
-        <SyntaxHighlighter
-          language={languageMap[language]}
-          style={isDark ? atomOneDark : atomOneLight}
-          customStyle={styles.highlight}
-        >
-          {value || ""}
-        </SyntaxHighlighter>
+        {value && value.trim().length > 0 && (
+          <View style={styles.highlightContainer}>
+            <SyntaxHighlighter
+              language={languageMap[language]}
+              style={isDark ? atomOneDark : atomOneLight}
+              customStyle={styles.highlight}
+              CodeTag={Text}
+              PreTag={View}
+            >
+              {value}
+            </SyntaxHighlighter>
+          </View>
+        )}
 
-        {/* TextInput invisível sobre o highlight */}
         <TextInput
           value={value}
           onChangeText={onChangeText}
           multiline
-          style={styles.inputOverlay}
+          placeholder={value && value.trim().length > 0 ? undefined : "Digite seu código aqui..."}
+          placeholderTextColor={colors.placeholder}
+          style={[
+            styles.inputOverlay,
+            {
+              opacity: value && value.trim().length > 0 ? 0 : 1,
+            },
+          ]}
+          textContentType="none"
           autoCapitalize="none"
           autoCorrect={false}
           spellCheck={false}
-          caretHidden={false}
-          selectionColor={colors.primary}
+          selectionColor={value && value.trim().length > 0 ? "transparent" : colors.primary}
         />
       </View>
     </View>
@@ -110,15 +118,23 @@ const styles = StyleSheet.create({
     position: "relative",
     minHeight: 180,
   },
+  highlightContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1,
+  },
   highlight: {
     padding: spacing.md,
     minHeight: 180,
     backgroundColor: "transparent",
+    margin: 0,
   },
   inputOverlay: {
     ...StyleSheet.absoluteFillObject,
     padding: spacing.md,
-    color: "transparent",
     fontSize: 14,
     lineHeight: 20,
     fontFamily: Platform.select({
@@ -126,5 +142,7 @@ const styles = StyleSheet.create({
       android: "monospace",
       default: "monospace",
     }),
+    zIndex: 2,
+    color: "transparent",
   },
 });
