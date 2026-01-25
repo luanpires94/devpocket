@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { Input } from "./Input";
 import { ThemeToggle } from "./ThemeToggle";
+import { useTranslation } from "../hooks/useTranslation";
 import { spacing } from "../theme/tokens";
 
 type Props = {
@@ -9,11 +10,13 @@ type Props = {
 };
 
 export function SearchHeader({ value, onChangeText }: Props) {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
         <Input
-          placeholder="Buscar..."
+          placeholder={t("common.search")}
           value={value}
           onChangeText={onChangeText}
         />
